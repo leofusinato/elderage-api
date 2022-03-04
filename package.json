@@ -14,6 +14,7 @@
     "@types/jsonwebtoken": "^8.5.8",
     "dotenv": "^16.0.0",
     "nodemon": "^2.0.15",
+    "prettier": "2.5.1",
     "ts-node": "^10.6.0",
     "typescript": "^4.6.2"
   },
