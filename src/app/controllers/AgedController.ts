@@ -1,19 +1,27 @@
 import { Request, Response } from "express";
 import { getRepository } from "typeorm";
 import Aged from "../models/Aged";
+import User from "../models/User";
 
 class AgedController {
     async store(req: Request, res: Response) {
-        const repository = getRepository(Aged);
+        const agedRepository = getRepository(Aged);
+        const userRepository = getRepository(User);
 
         const { name, birthdate, gender, address, city, state } = req.body;
 
         try { 
-            const aged = repository.create({ name, birthdate, gender, address, city, state });
-            await repository.save(aged);
+            const aged = agedRepository.create({ name, birthdate, gender, address, city, state });
+            await agedRepository.save(aged);
+
+            const userId = req.userId;
+            const user = await userRepository.findOne({ id: userId }, { relations: ['ageds'] });
+
+            user.ageds = [...user.ageds, aged];
+            userRepository.save(user);
     
             return res.json(aged);
-        } catch {
+        } catch(err) {
             return res.sendStatus(400);
         }
 

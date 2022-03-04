@@ -5,8 +5,11 @@ import {
   CreateDateColumn,
   BeforeInsert,
   BeforeUpdate,
+  ManyToMany,
+  JoinTable,
 } from "typeorm";
 import bcrypt from "bcryptjs";
+import Aged from "./Aged";
 
 @Entity("users")
 class User {
@@ -24,6 +27,12 @@ class User {
 
   @CreateDateColumn()
   created_at: Date;
+
+  @ManyToMany(type => Aged, {
+    cascade: true
+  })
+  @JoinTable()
+  ageds: Aged[];
 
   @BeforeInsert()
   @BeforeUpdate()

@@ -3,7 +3,9 @@ import {
     PrimaryGeneratedColumn,
     Column,
     CreateDateColumn,
+    ManyToMany,
   } from "typeorm";
+import User from "./User";
 
 @Entity('ageds')
 class Aged {
