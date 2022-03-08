@@ -16,6 +16,10 @@ export class createAgedsTable1646349786142 implements MigrationInterface {
             default: "uuid_generate_v4()",
           },
           {
+            name: "user_id",
+            type: "uuid",
+          },
+          {
             name: "name",
             type: "varchar",
           },
@@ -43,6 +47,14 @@ export class createAgedsTable1646349786142 implements MigrationInterface {
             name: "created_at",
             type: "timestamp",
             default: "now()",
+          },
+        ],
+        foreignKeys: [
+          {
+            name: "fk_aged_user_creator",
+            columnNames: ["user_id"],
+            referencedTableName: "users",
+            referencedColumnNames: ["id"],
           },
         ],
       })

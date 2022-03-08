@@ -5,6 +5,8 @@ import {
   CreateDateColumn,
   ManyToMany,
   OneToMany,
+  ManyToOne,
+  JoinColumn,
 } from "typeorm";
 import AgedContact from "./AgedContact";
 import User from "./User";
@@ -37,6 +39,13 @@ class Aged {
 
   @OneToMany(() => AgedContact, (agedContact) => agedContact.aged)
   contacts: AgedContact[];
+
+  @Column()
+  user_id: string;
+
+  @ManyToOne(() => User, (user) => user.ageds)
+  @JoinColumn({ name: "user_id" })
+  user: User;
 }
 
 export default Aged;
