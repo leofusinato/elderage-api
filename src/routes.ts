@@ -4,6 +4,7 @@ import authMiddleware from "./app/middlewares/authMiddleware";
 import UserController from "./app/controllers/UserController";
 import AuthController from "./app/controllers/AuthController";
 import AgedController from "./app/controllers/AgedController";
+import AgedContactController from "./app/controllers/AgedContactController";
 
 const router = Router();
 
@@ -13,7 +14,17 @@ router.post("/login", AuthController.authenticate);
 
 //Auth routes
 router.get("/users", authMiddleware, UserController.list);
+router.get("/aged", authMiddleware, AgedController.list);
 router.post("/aged", authMiddleware, AgedController.store);
-
+router.get(
+  "/aged/:aged_id/contact",
+  authMiddleware,
+  AgedContactController.listFromAged
+);
+router.post(
+  "/aged/:aged_id/contact",
+  authMiddleware,
+  AgedContactController.store
+);
 
 export default router;

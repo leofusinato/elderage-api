@@ -1,38 +1,42 @@
 import {
-    Entity,
-    PrimaryGeneratedColumn,
-    Column,
-    CreateDateColumn,
-    ManyToMany,
-  } from "typeorm";
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  ManyToMany,
+  OneToMany,
+} from "typeorm";
+import AgedContact from "./AgedContact";
 import User from "./User";
 
-@Entity('ageds')
+@Entity("ageds")
 class Aged {
-    @PrimaryGeneratedColumn("uuid")
-    id: string;
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
 
-    @Column()
-    name: string;
+  @Column()
+  name: string;
 
-    @Column()
-    gender: string;
+  @Column()
+  gender: string;
 
-    @Column({ type: 'date' })
-    birthdate: string;
+  @Column({ type: "date" })
+  birthdate: string;
 
-    @Column()
-    address: string;
+  @Column()
+  address: string;
 
-    @Column()
-    city: string;
+  @Column()
+  city: string;
 
-    @Column()
-    state: string;
+  @Column()
+  state: string;
 
-    @CreateDateColumn()
-    created_at: Date;
+  @CreateDateColumn()
+  created_at: Date;
 
+  @OneToMany(() => AgedContact, (agedContact) => agedContact.aged)
+  contacts: AgedContact[];
 }
 
 export default Aged;

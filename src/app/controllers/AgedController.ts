@@ -4,28 +4,42 @@ import Aged from "../models/Aged";
 import User from "../models/User";
 
 class AgedController {
-    async store(req: Request, res: Response) {
-        const agedRepository = getRepository(Aged);
-        const userRepository = getRepository(User);
+  async store(req: Request, res: Response) {
+    const agedRepository = getRepository(Aged);
+    const userRepository = getRepository(User);
 
-        const { name, birthdate, gender, address, city, state } = req.body;
+    const { name, birthdate, gender, address, city, state } = req.body;
 
-        try { 
-            const aged = agedRepository.create({ name, birthdate, gender, address, city, state });
-            await agedRepository.save(aged);
+    try {
+      const aged = agedRepository.create({
+        name,
+        birthdate,
+        gender,
+        address,
+        city,
+        state,
+      });
+      await agedRepository.save(aged);
 
-            const userId = req.userId;
-            const user = await userRepository.findOne({ id: userId }, { relations: ['ageds'] });
+      const userId = req.userId;
+      const user = await userRepository.findOne(
+        { id: userId },
+        { relations: ["ageds"] }
+      );
 
-            user.ageds = [...user.ageds, aged];
-            userRepository.save(user);
-    
-            return res.json(aged);
-        } catch(err) {
-            return res.sendStatus(400);
-        }
+      user.ageds = [...user.ageds, aged];
+      userRepository.save(user);
 
+      return res.json(aged);
+    } catch (err) {
+      return res.sendStatus(400);
     }
+  }
+  async list(req: Request, res: Response) {
+    const agedRepository = getRepository(Aged);
+    const ageds = await agedRepository.find();
+    return res.json(ageds);
+  }
 }
 
 export default new AgedController();

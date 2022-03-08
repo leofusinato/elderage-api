@@ -1,12 +1,14 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class createAgedsTable1646349786142 implements MigrationInterface {
+export class createAgedContactsTable1646696943049
+  implements MigrationInterface
+{
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
 
     await queryRunner.createTable(
       new Table({
-        name: "ageds",
+        name: "aged_contacts",
         columns: [
           {
             name: "id",
@@ -16,27 +18,16 @@ export class createAgedsTable1646349786142 implements MigrationInterface {
             default: "uuid_generate_v4()",
           },
           {
-            name: "name",
-            type: "varchar",
+            name: "aged_id",
+            type: "uuid",
           },
           {
-            name: "gender",
-            type: "varchar",
+            name: "type",
+            type: "smallint",
+            isPrimary: true,
           },
           {
-            name: "birthdate",
-            type: "date",
-          },
-          {
-            name: "address",
-            type: "varchar",
-          },
-          {
-            name: "city",
-            type: "varchar",
-          },
-          {
-            name: "state",
+            name: "description",
             type: "varchar",
           },
           {
@@ -45,12 +36,20 @@ export class createAgedsTable1646349786142 implements MigrationInterface {
             default: "now()",
           },
         ],
+        foreignKeys: [
+          {
+            name: "fk_aged_contact",
+            columnNames: ["aged_id"],
+            referencedTableName: "ageds",
+            referencedColumnNames: ["id"],
+          },
+        ],
       })
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable("ageds");
+    await queryRunner.dropTable("aged_contacts");
     await queryRunner.query('DROP EXTENSION "uuid-ossp"');
   }
 }
