@@ -16,6 +16,7 @@ router.post("/login", AuthController.authenticate);
 router.get("/users", authMiddleware, UserController.list);
 router.get("/aged", authMiddleware, AgedController.list);
 router.post("/aged", authMiddleware, AgedController.store);
+router.delete("/aged/:aged_id", authMiddleware, AgedController.delete);
 router.get(
   "/aged/:aged_id/contact",
   authMiddleware,

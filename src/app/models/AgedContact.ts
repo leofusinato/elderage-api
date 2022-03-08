@@ -19,7 +19,7 @@ class AgedContact {
   @Column()
   aged_id: string;
 
-  @ManyToOne(() => Aged, (aged) => aged.contacts)
+  @ManyToOne(() => Aged, (aged) => aged.contacts, { cascade: true })
   @JoinColumn({ name: "aged_id" })
   aged: Aged;
 

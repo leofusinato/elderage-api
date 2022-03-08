@@ -54,6 +54,32 @@ class AgedController {
     const ageds = await agedRepository.find();
     return res.json(ageds);
   }
+  async delete(req: Request, res: Response) {
+    const agedRepo = getRepository(Aged);
+    const contactsRepo = getRepository(AgedContact);
+
+    const { aged_id } = req.params;
+
+    try {
+      const aged = await agedRepo.findOne({ id: aged_id });
+
+      if (!aged) {
+        return res.status(404).json({ message: "Idoso não encontrado" });
+      }
+      if (aged.user_id != req.userId) {
+        return res
+          .status(403)
+          .json({ message: "Apenas quem cadastrou o idoso pode excluí-lo" });
+      }
+      await contactsRepo.delete({ aged_id });
+      await agedRepo.delete({ id: aged_id });
+
+      return res.sendStatus(200);
+    } catch (err) {
+      console.log(err);
+      return res.sendStatus(400);
+    }
+  }
 }
 
 export default new AgedController();
