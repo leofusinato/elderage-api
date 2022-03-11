@@ -7,13 +7,13 @@ import {
   BeforeUpdate,
   ManyToMany,
   JoinTable,
-} from "typeorm";
-import bcrypt from "bcryptjs";
-import Aged from "./Aged";
+} from 'typeorm';
+import bcrypt from 'bcryptjs';
+import Aged from './Aged';
 
-@Entity("users")
+@Entity('users')
 class User {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
@@ -25,11 +25,17 @@ class User {
   @Column()
   password: string;
 
+  @Column()
+  password_reset_token: string;
+
+  @Column({ type: 'date' })
+  password_reset_expires: Date;
+
   @CreateDateColumn()
   created_at: Date;
 
-  @ManyToMany(type => Aged, {
-    cascade: true
+  @ManyToMany((type) => Aged, {
+    cascade: true,
   })
   @JoinTable()
   ageds: Aged[];

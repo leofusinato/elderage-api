@@ -3,17 +3,16 @@ import {
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
-  ManyToMany,
   OneToMany,
   ManyToOne,
   JoinColumn,
-} from "typeorm";
-import AgedContact from "./AgedContact";
-import User from "./User";
+} from 'typeorm';
+import AgedContact from './AgedContact';
+import User from './User';
 
-@Entity("ageds")
+@Entity('ageds')
 class Aged {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
@@ -22,7 +21,7 @@ class Aged {
   @Column()
   gender: string;
 
-  @Column({ type: "date" })
+  @Column({ type: 'date' })
   birthdate: string;
 
   @Column()
@@ -44,7 +43,7 @@ class Aged {
   user_id: string;
 
   @ManyToOne(() => User, (user) => user.ageds)
-  @JoinColumn({ name: "user_id" })
+  @JoinColumn({ name: 'user_id' })
   user: User;
 }
 
