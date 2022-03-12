@@ -7,6 +7,9 @@ class UserController {
     const repository = getRepository(User);
 
     const users = await repository.find();
+    users.map((user) => {
+      delete user.password;
+    });
 
     return res.send(users);
   }

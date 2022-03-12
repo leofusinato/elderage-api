@@ -76,6 +76,43 @@ class AuthController {
       return res.sendStatus(400);
     }
   }
+
+  async resetPassword(req: Request, res: Response) {
+    const userRepo = getRepository(User);
+    const { email, token, password } = req.body;
+
+    try {
+      const user = await userRepo.findOne({ email });
+      if (!user) {
+        return res.sendStatus(404);
+      }
+
+      if (token !== user.password_reset_token) {
+        return res.status(400).send({ message: 'Token inválido' });
+      }
+
+      const now = new Date();
+      if (now > user.password_reset_expires) {
+        return res
+          .status(400)
+          .send({
+            message:
+              'Token expirado. Por favor, gere outro realizando a solicitação de esquecimento de senha novamente',
+          });
+      }
+
+      user.password = password;
+      await userRepo.save(user);
+
+      return res.sendStatus(200);
+    } catch {
+      return res
+        .status(400)
+        .send({
+          message: 'Não foi possível resetar a senha, tente novamente.',
+        });
+    }
+  }
 }
 
 export default new AuthController();
