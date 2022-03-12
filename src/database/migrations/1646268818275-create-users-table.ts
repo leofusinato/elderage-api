@@ -28,6 +28,5 @@ export class createUsersTable1646268818275 implements MigrationInterface {
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropTable('users');
-    await queryRunner.query('DROP EXTENSION "uuid-ossp"');
   }
 }

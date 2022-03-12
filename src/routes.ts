@@ -5,6 +5,7 @@ import UserController from './app/controllers/UserController';
 import AuthController from './app/controllers/AuthController';
 import AgedController from './app/controllers/AgedController';
 import AgedContactController from './app/controllers/AgedContactController';
+import AgedMedicationController from './app/controllers/AgedMedicationController';
 
 const router = Router();
 
@@ -29,6 +30,21 @@ router.post(
   '/aged/:aged_id/contact',
   authMiddleware,
   AgedContactController.store
+);
+router.post(
+  '/aged/:aged_id/medication',
+  authMiddleware,
+  AgedMedicationController.store
+);
+router.get(
+  '/aged/:aged_id/medication',
+  authMiddleware,
+  AgedMedicationController.list
+);
+router.delete(
+  '/aged/:aged_id/medication/:medication_id',
+  authMiddleware,
+  AgedMedicationController.delete
 );
 
 export default router;

@@ -8,6 +8,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 import AgedContact from './AgedContact';
+import AgedMedication from './AgedMedication';
 import User from './User';
 
 @Entity('ageds')
@@ -38,6 +39,9 @@ class Aged {
 
   @OneToMany(() => AgedContact, (agedContact) => agedContact.aged)
   contacts: AgedContact[];
+
+  @OneToMany(() => AgedMedication, (agedMedication) => agedMedication.aged)
+  medications: AgedMedication[];
 
   @Column()
   user_id: string;
