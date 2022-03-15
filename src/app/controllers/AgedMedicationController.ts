@@ -72,6 +72,36 @@ class AgedMedicationController {
       return res.sendStatus(400);
     }
   }
+  async update(req: Request, res: Response) {
+    const agedRepo = getRepository(Aged);
+    const medicationRepo = getRepository(AgedMedication);
+    const { aged_id, medication_id } = req.params;
+    const { description, details, time_type, time_description } = req.body;
+
+    try {
+      const aged = await agedRepo.findOne({ id: aged_id });
+      if (!aged) {
+        return res.status(404).json({ message: 'Idoso não encontrado' });
+      }
+
+      const medication = await medicationRepo.findOne({ id: medication_id });
+      if (!medication) {
+        return res.status(404).json({ message: 'Medicação não encontrada' });
+      }
+      const updated = {
+        ...medication,
+        description,
+        details,
+        time_type,
+        time_description,
+      };
+      await medicationRepo.save(updated);
+
+      return res.json(updated);
+    } catch (err) {
+      return res.sendStatus(400);
+    }
+  }
 }
 
 export default new AgedMedicationController();

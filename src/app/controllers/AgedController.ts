@@ -1,8 +1,8 @@
-import { Request, Response } from "express";
-import { getRepository } from "typeorm";
-import Aged from "../models/Aged";
-import AgedContact from "../models/AgedContact";
-import User from "../models/User";
+import { Request, Response } from 'express';
+import { getRepository } from 'typeorm';
+import Aged from '../models/Aged';
+import AgedContact from '../models/AgedContact';
+import User from '../models/User';
 
 class AgedController {
   async store(req: Request, res: Response) {
@@ -38,7 +38,7 @@ class AgedController {
 
       const user = await userRepository.findOne(
         { id: userId },
-        { relations: ["ageds"] }
+        { relations: ['ageds'] }
       );
 
       user.ageds = [...user.ageds, aged];
@@ -54,6 +54,22 @@ class AgedController {
     const ageds = await agedRepository.find();
     return res.json(ageds);
   }
+  async index(req: Request, res: Response) {
+    const { aged_id } = req.params;
+    const agedRepository = getRepository(Aged);
+    try {
+      const aged = await agedRepository.findOne(
+        { id: aged_id },
+        { relations: ['contacts'] }
+      );
+      if (!aged) {
+        return res.status(404).json({ message: 'Idoso não encontrado' });
+      }
+      return res.json(aged);
+    } catch {
+      return res.sendStatus(400);
+    }
+  }
   async delete(req: Request, res: Response) {
     const agedRepo = getRepository(Aged);
     const contactsRepo = getRepository(AgedContact);
@@ -64,17 +80,70 @@ class AgedController {
       const aged = await agedRepo.findOne({ id: aged_id });
 
       if (!aged) {
-        return res.status(404).json({ message: "Idoso não encontrado" });
+        return res.status(404).json({ message: 'Idoso não encontrado' });
       }
       if (aged.user_id != req.userId) {
         return res
           .status(403)
-          .json({ message: "Apenas quem cadastrou o idoso pode excluí-lo" });
+          .json({ message: 'Apenas quem cadastrou o idoso pode excluí-lo' });
       }
       await contactsRepo.delete({ aged_id });
       await agedRepo.delete({ id: aged_id });
 
       return res.sendStatus(200);
+    } catch (err) {
+      console.log(err);
+      return res.sendStatus(400);
+    }
+  }
+  async update(req: Request, res: Response) {
+    const agedRepo = getRepository(Aged);
+    const contactsRepo = getRepository(AgedContact);
+
+    const { aged_id } = req.params;
+    const { name, birthdate, gender, address, city, state, contacts } =
+      req.body;
+
+    try {
+      const aged = await agedRepo.findOne({ id: aged_id });
+
+      if (!aged) {
+        return res.status(404).json({ message: 'Idoso não encontrado' });
+      }
+      if (aged.user_id != req.userId) {
+        return res
+          .status(403)
+          .json({ message: 'Apenas quem cadastrou o idoso pode alterá-lo' });
+      }
+
+      const updated = {
+        ...aged,
+        name,
+        birthdate,
+        gender,
+        address,
+        city,
+        state,
+      };
+      await agedRepo.save(updated);
+
+      if (!!contacts && contacts.constructor === Array) {
+        contacts.map(async (contact) => {
+          const contactToUpdate = await contactsRepo.findOne({
+            id: contact.id,
+          });
+          if (!contactToUpdate) {
+            return res.status(404).json({ message: 'Contato não encontrado' });
+          }
+          await contactsRepo.save({
+            ...contactToUpdate,
+            type: contact.type,
+            description: contact.description,
+          });
+        });
+      }
+
+      return res.sendStatus(200).json({ updated });
     } catch (err) {
       console.log(err);
       return res.sendStatus(400);
