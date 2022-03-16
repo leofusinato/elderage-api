@@ -6,6 +6,7 @@ import AuthController from './app/controllers/AuthController';
 import AgedController from './app/controllers/AgedController';
 import AgedContactController from './app/controllers/AgedContactController';
 import AgedMedicationController from './app/controllers/AgedMedicationController';
+import InviteController from './app/controllers/InviteController';
 
 const router = Router();
 
@@ -62,6 +63,20 @@ router.delete(
   '/aged/:aged_id/medication/:medication_id',
   authMiddleware,
   AgedMedicationController.delete
+);
+
+router.get('/invite/my', authMiddleware, InviteController.my);
+router.get('/invite/guest', authMiddleware, InviteController.guest);
+router.post('/invite', authMiddleware, InviteController.store);
+router.patch(
+  '/invite/:invite_id/accept',
+  authMiddleware,
+  InviteController.accept
+);
+router.patch(
+  '/invite/:invite_id/decline',
+  authMiddleware,
+  InviteController.decline
 );
 
 export default router;

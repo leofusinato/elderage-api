@@ -2,25 +2,23 @@ import {
   Entity,
   Column,
   CreateDateColumn,
-  PrimaryColumn,
   ManyToOne,
   JoinColumn,
-  OneToMany,
   PrimaryGeneratedColumn,
-} from "typeorm";
+} from 'typeorm';
 
-import Aged from "./Aged";
+import Aged from './Aged';
 
-@Entity("aged_contacts")
+@Entity('aged_contacts')
 class AgedContact {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
   aged_id: string;
 
   @ManyToOne(() => Aged, (aged) => aged.contacts, { cascade: true })
-  @JoinColumn({ name: "aged_id" })
+  @JoinColumn({ name: 'aged_id' })
   aged: Aged;
 
   @Column()
