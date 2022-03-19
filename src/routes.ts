@@ -7,12 +7,12 @@ import AgedController from './app/controllers/AgedController';
 import AgedContactController from './app/controllers/AgedContactController';
 import AgedMedicationController from './app/controllers/AgedMedicationController';
 import InviteController from './app/controllers/InviteController';
+import CheckinMedicationController from './app/controllers/CheckinMedicationController';
 
 const router = Router();
 
 //No auth routes
 router.post('/users', UserController.store);
-
 router.post('/login', AuthController.authenticate);
 router.post('/forgotPassword', AuthController.forgotPassword);
 router.post('/resetPassword', AuthController.resetPassword);
@@ -63,6 +63,23 @@ router.delete(
   '/aged/:aged_id/medication/:medication_id',
   authMiddleware,
   AgedMedicationController.delete
+);
+
+router.post('/checkin', authMiddleware, CheckinMedicationController.store);
+router.get(
+  '/checkin/medication/:medication_id',
+  authMiddleware,
+  CheckinMedicationController.indexFromMedication
+);
+router.get(
+  '/checkin/user',
+  authMiddleware,
+  CheckinMedicationController.indexFromUser
+);
+router.get(
+  '/checkin/aged/:aged_id',
+  authMiddleware,
+  CheckinMedicationController.indexFromAged
 );
 
 router.get('/invite/my', authMiddleware, InviteController.my);
