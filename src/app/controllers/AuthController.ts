@@ -6,6 +6,7 @@ import crypto from 'crypto';
 import mailer from '../modules/mailer';
 
 import User from '../models/User';
+import RefreshToken from '../models/RefreshToken';
 
 class AuthController {
   async authenticate(req: Request, res: Response) {
@@ -93,12 +94,10 @@ class AuthController {
 
       const now = new Date();
       if (now > user.password_reset_expires) {
-        return res
-          .status(400)
-          .send({
-            message:
-              'Token expirado. Por favor, gere outro realizando a solicitação de esquecimento de senha novamente',
-          });
+        return res.status(400).send({
+          message:
+            'Token expirado. Por favor, gere outro realizando a solicitação de esquecimento de senha novamente',
+        });
       }
 
       user.password = password;
@@ -106,11 +105,35 @@ class AuthController {
 
       return res.sendStatus(200);
     } catch {
-      return res
-        .status(400)
-        .send({
-          message: 'Não foi possível resetar a senha, tente novamente.',
-        });
+      return res.status(400).send({
+        message: 'Não foi possível resetar a senha, tente novamente.',
+      });
+    }
+  }
+
+  async refreshToken(req: Request, res: Response) {
+    const { refresh_token } = req.body;
+    // const userRepo = getRepository(User);
+    const refreshTokenRepo = getRepository(RefreshToken);
+
+    try {
+      const refreshToken = await refreshTokenRepo.findOne({
+        id: refresh_token,
+      });
+      if (!refreshToken) {
+        return res.status(404).json({ message: 'Token não encontrado' });
+      }
+      const token = jwt.sign(
+        { id: refreshToken.user_id },
+        process.env.PASSWORD_JWT_SECRET_KEY,
+        { expiresIn: '1d' }
+      );
+
+      return res.json({ token });
+    } catch {
+      return res.status(400).send({
+        message: 'Não foi possível realizar a requisição, tente novamente.',
+      });
     }
   }
 }

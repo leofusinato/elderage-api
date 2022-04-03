@@ -16,6 +16,7 @@ router.post('/users', UserController.store);
 router.post('/login', AuthController.authenticate);
 router.post('/forgotPassword', AuthController.forgotPassword);
 router.post('/resetPassword', AuthController.resetPassword);
+router.post('/refreshToken', AuthController.refreshToken);
 
 //Auth routes
 router.get('/users', authMiddleware, UserController.list);
