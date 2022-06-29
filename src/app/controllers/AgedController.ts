@@ -143,7 +143,7 @@ class AgedController {
         });
       }
 
-      return res.sendStatus(200).json({ updated });
+      return res.status(200).json({ updated });
     } catch (err) {
       console.log(err);
       return res.sendStatus(400);

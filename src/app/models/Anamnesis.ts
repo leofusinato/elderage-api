@@ -16,6 +16,9 @@ class Anamnesis {
   @Column()
   aged_id: string;
 
+  @Column()
+  user_id: string;
+
   @ManyToOne(() => Aged, (aged) => aged.anamnesis, { cascade: true })
   @JoinColumn({ name: 'aged_id' })
   aged: Aged;

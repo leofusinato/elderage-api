@@ -1,8 +1,5 @@
 import { Request, Response } from 'express';
-import {
-  CustomRepositoryCannotInheritRepositoryError,
-  getRepository,
-} from 'typeorm';
+import { getRepository } from 'typeorm';
 import Aged from '../models/Aged';
 import AgedMedication from '../models/AgedMedication';
 import CheckinMedication from '../models/CheckinMedication';

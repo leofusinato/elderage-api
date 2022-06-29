@@ -8,6 +8,7 @@ import AgedContactController from './app/controllers/AgedContactController';
 import AgedMedicationController from './app/controllers/AgedMedicationController';
 import InviteController from './app/controllers/InviteController';
 import CheckinMedicationController from './app/controllers/CheckinMedicationController';
+import AnamnesisController from './app/controllers/AnamnesisController';
 
 const router = Router();
 
@@ -95,6 +96,28 @@ router.patch(
   '/invite/:invite_id/decline',
   authMiddleware,
   InviteController.decline
+);
+
+router.post('/anamnesis', authMiddleware, AnamnesisController.store);
+router.put(
+  '/anamnesis/:anamnesisId',
+  authMiddleware,
+  AnamnesisController.update
+);
+router.delete(
+  '/anamnesis/:anamnesisId',
+  authMiddleware,
+  AnamnesisController.delete
+);
+router.get(
+  '/anamnesis/aged/:agedId',
+  authMiddleware,
+  AnamnesisController.indexFromAged
+);
+router.get(
+  '/anamnesis/:anamnesisId',
+  authMiddleware,
+  AnamnesisController.index
 );
 
 export default router;
