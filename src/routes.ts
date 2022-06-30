@@ -9,6 +9,7 @@ import AgedMedicationController from './app/controllers/AgedMedicationController
 import InviteController from './app/controllers/InviteController';
 import CheckinMedicationController from './app/controllers/CheckinMedicationController';
 import AnamnesisController from './app/controllers/AnamnesisController';
+import AgedEventController from './app/controllers/AgedEventController';
 
 const router = Router();
 
@@ -118,6 +119,20 @@ router.get(
   '/anamnesis/:anamnesisId',
   authMiddleware,
   AnamnesisController.index
+);
+
+router.post('/agedEvent', authMiddleware, AgedEventController.store);
+router.get(
+  '/agedEvent/aged/:agedId',
+  authMiddleware,
+  AgedEventController.indexFromAged
+);
+router.get('/agedEvent/:eventId', authMiddleware, AgedEventController.index);
+router.put('/agedEvent/:eventId', authMiddleware, AgedEventController.update);
+router.delete(
+  '/agedEvent/:eventId',
+  authMiddleware,
+  AgedEventController.delete
 );
 
 export default router;
