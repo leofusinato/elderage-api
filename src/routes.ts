@@ -10,6 +10,7 @@ import InviteController from './app/controllers/InviteController';
 import CheckinMedicationController from './app/controllers/CheckinMedicationController';
 import AnamnesisController from './app/controllers/AnamnesisController';
 import AgedEventController from './app/controllers/AgedEventController';
+import HomeController from './app/controllers/HomeController';
 
 const router = Router();
 
@@ -21,6 +22,7 @@ router.post('/resetPassword', AuthController.resetPassword);
 router.post('/refreshToken', AuthController.refreshToken);
 
 //Auth routes
+router.get('/home', authMiddleware, HomeController.index);
 router.get('/users', authMiddleware, UserController.list);
 router.get('/aged', authMiddleware, AgedController.list);
 router.get('/aged/:aged_id', authMiddleware, AgedController.index);
