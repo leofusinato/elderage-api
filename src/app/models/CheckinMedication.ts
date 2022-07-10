@@ -28,7 +28,7 @@ class CheckinMedication {
   @Column()
   medication_id: string;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => AgedMedication)
   @JoinColumn({ name: 'medication_id' })
   medication: AgedMedication;
 
