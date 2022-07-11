@@ -18,6 +18,7 @@ const router = Router();
 router.post('/users', UserController.store);
 router.post('/login', AuthController.authenticate);
 router.post('/forgotPassword', AuthController.forgotPassword);
+router.post('/verifyToken', AuthController.verifyPasswordToken);
 router.post('/resetPassword', AuthController.resetPassword);
 router.post('/refreshToken', AuthController.refreshToken);
 

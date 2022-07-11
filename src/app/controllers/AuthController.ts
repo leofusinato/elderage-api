@@ -78,9 +78,9 @@ class AuthController {
     }
   }
 
-  async resetPassword(req: Request, res: Response) {
+  async verifyPasswordToken(req: Request, res: Response) {
     const userRepo = getRepository(User);
-    const { email, token, password } = req.body;
+    const { email, token } = req.body;
 
     try {
       const user = await userRepo.findOne({ email });
@@ -98,6 +98,24 @@ class AuthController {
           message:
             'Token expirado. Por favor, gere outro realizando a solicitação de esquecimento de senha novamente',
         });
+      }
+
+      return res.sendStatus(200);
+    } catch {
+      return res.status(400).send({
+        message: 'Não foi possível verificar o token, tente novamente.',
+      });
+    }
+  }
+
+  async resetPassword(req: Request, res: Response) {
+    const userRepo = getRepository(User);
+    const { email, password } = req.body;
+
+    try {
+      const user = await userRepo.findOne({ email });
+      if (!user) {
+        return res.sendStatus(404);
       }
 
       user.password = password;
