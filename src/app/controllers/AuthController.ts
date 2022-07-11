@@ -42,7 +42,7 @@ class AuthController {
       if (!user) {
         return res.sendStatus(404);
       }
-      const token = crypto.randomBytes(20).toString('hex');
+      const token = crypto.randomInt(100000, 999999).toString();
 
       const now = new Date();
       now.setHours(now.getHours() + 1);
