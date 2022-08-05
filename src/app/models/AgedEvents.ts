@@ -5,6 +5,7 @@ import {
   ManyToOne,
   JoinColumn,
   PrimaryGeneratedColumn,
+  Timestamp,
 } from 'typeorm';
 
 import Aged from './Aged';
@@ -21,7 +22,8 @@ class AgedEvent {
   @JoinColumn({ name: 'aged_id' })
   aged: Aged;
 
-  @CreateDateColumn()
+  // @CreateDateColumn()
+  @Column('timestamp without time zone')
   date: Date;
 
   @Column()

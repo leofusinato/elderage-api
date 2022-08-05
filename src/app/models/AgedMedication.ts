@@ -5,8 +5,10 @@ import {
   JoinColumn,
   PrimaryGeneratedColumn,
   ManyToOne,
+  OneToMany,
 } from 'typeorm';
 import Aged from './Aged';
+import ScheduleMedication from './ScheduleMedication';
 
 @Entity('aged_medication')
 class AgedMedication {
@@ -19,6 +21,12 @@ class AgedMedication {
   @ManyToOne(() => Aged, (aged) => aged.medications, { cascade: true })
   @JoinColumn({ name: 'aged_id' })
   aged: Aged;
+
+  @OneToMany(
+    () => ScheduleMedication,
+    (agedMedication) => agedMedication.medication
+  )
+  schedules: ScheduleMedication[];
 
   @Column()
   description: string;

@@ -1,14 +1,18 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
+
 import Aged from '../models/Aged';
 import AgedMedication from '../models/AgedMedication';
+import ScheduleMedication from '../models/ScheduleMedication';
 
 class AgedMedicationController {
   async store(req: Request, res: Response) {
     const agedRepo = getRepository(Aged);
     const medicationRepo = getRepository(AgedMedication);
+    const scheduleRepo = getRepository(ScheduleMedication);
     const { aged_id } = req.params;
-    const { description, details, time_type, time_description } = req.body;
+    const { description, details, time_type, time_description, schedules } =
+      req.body;
 
     try {
       const aged = await agedRepo.findOne({ id: aged_id });
@@ -23,8 +27,17 @@ class AgedMedicationController {
         time_type,
         time_description,
       });
-
       await medicationRepo.save(medication);
+
+      if (schedules && schedules.length > 0) {
+        for (let schedule of schedules) {
+          const newSchedule = scheduleRepo.create({
+            medication_id: medication.id,
+            time: schedule,
+          });
+          await scheduleRepo.save(newSchedule);
+        }
+      }
 
       return res.send(medication);
     } catch (err) {
@@ -42,7 +55,9 @@ class AgedMedicationController {
         return res.status(404).json({ message: 'Idoso não encontrado' });
       }
 
-      const medications = await medicationRepo.find();
+      const medications = await medicationRepo.find({
+        relations: ['schedules'],
+      });
 
       return res.send(medications);
     } catch (err) {
@@ -75,8 +90,11 @@ class AgedMedicationController {
   async update(req: Request, res: Response) {
     const agedRepo = getRepository(Aged);
     const medicationRepo = getRepository(AgedMedication);
+    const scheduleRepo = getRepository(ScheduleMedication);
+
     const { aged_id, medication_id } = req.params;
-    const { description, details, time_type, time_description } = req.body;
+    const { description, details, time_type, time_description, schedules } =
+      req.body;
 
     try {
       const aged = await agedRepo.findOne({ id: aged_id });
@@ -96,6 +114,17 @@ class AgedMedicationController {
         time_description,
       };
       await medicationRepo.save(updated);
+
+      if (schedules && schedules.length > 0) {
+        await scheduleRepo.delete({ medication_id });
+        for (let schedule of schedules) {
+          const newSchedule = scheduleRepo.create({
+            medication_id,
+            time: schedule,
+          });
+          await scheduleRepo.save(newSchedule);
+        }
+      }
 
       return res.json(updated);
     } catch (err) {
