@@ -11,6 +11,7 @@ import CheckinMedicationController from './app/controllers/CheckinMedicationCont
 import AnamnesisController from './app/controllers/AnamnesisController';
 import AgedEventController from './app/controllers/AgedEventController';
 import HomeController from './app/controllers/HomeController';
+import TaskController from './app/controllers/TaskController';
 
 const router = Router();
 
@@ -137,5 +138,7 @@ router.delete(
   authMiddleware,
   AgedEventController.delete
 );
+
+router.get('/tasks/date/:date', authMiddleware, TaskController.tasksFromDate);
 
 export default router;

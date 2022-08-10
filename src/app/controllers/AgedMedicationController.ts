@@ -56,6 +56,9 @@ class AgedMedicationController {
       }
 
       const medications = await medicationRepo.find({
+        where: {
+          aged_id,
+        },
         relations: ['schedules'],
       });
 
