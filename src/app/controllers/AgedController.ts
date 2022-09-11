@@ -32,6 +32,7 @@ class AgedController {
           aged_id: aged.id,
           type: contact.type,
           description: contact.description,
+          name: contact.name,
         });
         await contactRepository.save(newContact);
       });

@@ -9,7 +9,7 @@ class AgedContactController {
     const agedRepository = getRepository(Aged);
     const repository = getRepository(AgedContact);
     const { aged_id } = req.params;
-    const { type, description } = req.body;
+    const { type, description, name } = req.body;
 
     try {
       const aged = await agedRepository.findOne({ id: aged_id });
@@ -17,7 +17,7 @@ class AgedContactController {
         return res.status(404).json({ message: 'Idoso não encontrado' });
       }
 
-      const contact = repository.create({ aged_id, type, description });
+      const contact = repository.create({ aged_id, type, description, name });
       await repository.save(contact);
 
       return res.json(contact);

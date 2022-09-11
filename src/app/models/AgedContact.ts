@@ -27,6 +27,9 @@ class AgedContact {
   @Column()
   description: string;
 
+  @Column()
+  name: string;
+
   @CreateDateColumn()
   created_at: Date;
 }
