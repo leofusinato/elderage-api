@@ -1,0 +1,27 @@
+_id: req_c66d0f514bee471aac4acc9a40805b7c
+type: Request
+parentId: fld_777132489dff42d78e62a2db94419786
+modified: 1663206623798
+created: 1663206623798
+url: "{{ _.base_url }}/aged"
+name: List
+description: ""
+method: GET
+body: {}
+parameters: []
+headers:
+  - id: pair_f496acecd3174e18a92f49d710121f16
+    name: ""
+    value: ""
+    description: ""
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1646700760543
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

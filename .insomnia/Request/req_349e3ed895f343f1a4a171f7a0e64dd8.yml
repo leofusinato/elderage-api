@@ -1,0 +1,32 @@
+_id: req_349e3ed895f343f1a4a171f7a0e64dd8
+type: Request
+parentId: fld_c476f6614030486c908fcce73c5be170
+modified: 1663206633566
+created: 1663206633566
+url: "{{ _.base_url }}/checkin"
+name: Create
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"medication_id": "a78079b2-702f-4318-8ab3-5ddcd202e2aa",
+    	"date_hour_applied": "2022-08-09T01:15:32.863Z"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_937e7d1cfd984eecbfe150fec8b78b15
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1647651358651
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

@@ -1,0 +1,23 @@
+_id: req_2339a38811b54a99b30532d9e9049e25
+type: Request
+parentId: fld_b3fbadc897e9488fa3cdd9cff0ff45b9
+modified: 1663206586936
+created: 1663206586936
+url: "{{ _.base_url }}/home"
+name: Home
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1657073775588
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

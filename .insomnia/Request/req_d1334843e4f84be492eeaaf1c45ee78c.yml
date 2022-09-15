@@ -1,0 +1,23 @@
+_id: req_d1334843e4f84be492eeaaf1c45ee78c
+type: Request
+parentId: fld_c476f6614030486c908fcce73c5be170
+modified: 1663206633573
+created: 1663206633573
+url: "{{ _.base_url }}/checkin/user"
+name: List by user
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1647457776708.25
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

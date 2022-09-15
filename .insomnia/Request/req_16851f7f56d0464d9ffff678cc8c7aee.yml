@@ -1,0 +1,30 @@
+_id: req_16851f7f56d0464d9ffff678cc8c7aee
+type: Request
+parentId: fld_16d52dfc539d40e7ad81b989d24a5485
+modified: 1663206579773
+created: 1663206579773
+url: "{{ _.base_url }}/resetPassword"
+name: Reset Password
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"email": "leofusinato@hotmail.com",
+    	"password": "1234"
+    } 
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_e93bcd319d1c4e89aea789276d970675
+authentication: {}
+metaSortKey: -1642391646491.75
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

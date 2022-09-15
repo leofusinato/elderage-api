@@ -1,0 +1,29 @@
+_id: req_b15ef227dfec42189499617168b74df5
+type: Request
+parentId: fld_16d52dfc539d40e7ad81b989d24a5485
+modified: 1663206579771
+created: 1663206579771
+url: "{{ _.base_url }}/forgotPassword"
+name: Forgot Password
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"email": "leofusinato@hotmail.com"
+    } 
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_e93bcd319d1c4e89aea789276d970675
+authentication: {}
+metaSortKey: -1642945682378.5
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

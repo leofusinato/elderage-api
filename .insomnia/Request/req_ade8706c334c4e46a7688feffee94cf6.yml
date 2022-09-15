@@ -1,0 +1,34 @@
+_id: req_ade8706c334c4e46a7688feffee94cf6
+type: Request
+parentId: fld_bccccfe7ecf240e0b92ae4faa0333afb
+modified: 1663206623782
+created: 1663206623782
+url: "{{ _.base_url }}/agedEvent"
+name: Create
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"aged_id": "a673659e-6e8e-48cb-9375-8422026012ba", 
+    	"local": "Casa", 
+    	"description": "Visita fonoaudióloga", 
+    	"date": "2022-07-11 09:00:00"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_4347c98239b84bf7a5375c3ee4bfec26
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1656627196411
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

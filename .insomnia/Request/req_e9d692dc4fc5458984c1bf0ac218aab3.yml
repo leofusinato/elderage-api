@@ -1,0 +1,23 @@
+_id: req_e9d692dc4fc5458984c1bf0ac218aab3
+type: Request
+parentId: fld_777132489dff42d78e62a2db94419786
+modified: 1663206623801
+created: 1663206623801
+url: "{{ _.base_url }}/aged/d1d68b40-8dbe-4218-bb4f-078331090a35"
+name: Delete
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1646351850156
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

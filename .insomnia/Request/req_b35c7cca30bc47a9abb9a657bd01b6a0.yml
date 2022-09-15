@@ -1,0 +1,25 @@
+_id: req_b35c7cca30bc47a9abb9a657bd01b6a0
+type: Request
+parentId: fld_3be207db0ad842cbae4c673e77736035
+modified: 1663206623759
+created: 1663206623759
+url: "{{ _.base_url
+  }}/aged/7b2fe0a0-e266-49dc-963f-80a6e11ddce6/medication/b0063d44-3677-4d70-8e\
+  72-d5040307b95b"
+name: Delete
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1646805491753.5
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

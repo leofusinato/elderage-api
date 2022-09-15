@@ -1,0 +1,23 @@
+_id: req_53872eec129549ccaaa096f0360ea106
+type: Request
+parentId: fld_cfb1b8e3c17c43b4b244247855f0a138
+modified: 1663206628765
+created: 1663206628765
+url: "{{ _.base_url }}/invite/384b4ec7-32df-4266-918c-12920b42b0f5/accept"
+name: Accept
+description: ""
+method: PATCH
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1647348012994
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

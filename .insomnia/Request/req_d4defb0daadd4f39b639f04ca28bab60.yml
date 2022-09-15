@@ -1,0 +1,30 @@
+_id: req_d4defb0daadd4f39b639f04ca28bab60
+type: Request
+parentId: fld_16d52dfc539d40e7ad81b989d24a5485
+modified: 1663206579768
+created: 1663206579768
+url: "{{ _.base_url }}/login"
+name: Login
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"email": "leofusinato@hotmail.com",
+    	"password": "Teste@123"
+    } 
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_e93bcd319d1c4e89aea789276d970675
+authentication: {}
+metaSortKey: -1644053754152
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

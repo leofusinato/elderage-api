@@ -1,0 +1,42 @@
+_id: req_48134af0c9894f43b436f3e388430b45
+type: Request
+parentId: fld_777132489dff42d78e62a2db94419786
+modified: 1663206623795
+created: 1663206623795
+url: "{{ _.base_url }}/aged"
+name: Create
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"name": "Idoso teste com contato",
+    	"birthdate": "01/01/1920",
+    	"gender": "M",
+    	"address": "Qualquer rua",
+    	"city": "Ibirama",
+    	"state": "SC",
+    	"contacts": [
+    		{
+    			"type": 1,
+    			"description": "(47) 99999991"
+    		} 
+    	]
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_00f9c5e5eefa4ce3ac8c7c5194a94771
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1646351850181
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

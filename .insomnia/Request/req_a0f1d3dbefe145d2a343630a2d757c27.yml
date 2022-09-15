@@ -1,0 +1,23 @@
+_id: req_a0f1d3dbefe145d2a343630a2d757c27
+type: Request
+parentId: fld_a1a3b2d19d484159975594126f31197e
+modified: 1663206623769
+created: 1663206623769
+url: "{{ _.base_url }}/anamnesis/14f6eaad-6332-4f33-91fa-3dd0a6d9271d"
+name: List from id
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1656110898590
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

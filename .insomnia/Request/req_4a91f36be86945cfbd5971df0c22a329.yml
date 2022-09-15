@@ -1,0 +1,23 @@
+_id: req_4a91f36be86945cfbd5971df0c22a329
+type: Request
+parentId: fld_3be207db0ad842cbae4c673e77736035
+modified: 1663206623757
+created: 1663206623757
+url: "{{ _.base_url }}/aged/7b2fe0a0-e266-49dc-963f-80a6e11ddce6/medication"
+name: List from aged
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1646909853597
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

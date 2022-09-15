@@ -1,0 +1,23 @@
+_id: req_5976361936b1497a8fefcf14e379cfee
+type: Request
+parentId: fld_cfb1b8e3c17c43b4b244247855f0a138
+modified: 1663206628770
+created: 1663206628770
+url: "{{ _.base_url }}/invite/my"
+name: My
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1647370631194
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

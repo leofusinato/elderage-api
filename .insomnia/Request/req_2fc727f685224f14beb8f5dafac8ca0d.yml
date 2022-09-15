@@ -1,0 +1,32 @@
+_id: req_2fc727f685224f14beb8f5dafac8ca0d
+type: Request
+parentId: fld_cfb1b8e3c17c43b4b244247855f0a138
+modified: 1663206628761
+created: 1663206628761
+url: "{{ _.base_url }}/invite"
+name: Create
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"aged_id": "a673659e-6e8e-48cb-9375-8422026012ba",
+    	"guest_id": "fae14609-b09c-49c3-b6ea-07d5162fac8a"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_3533aeac19fb4207944de9f4a583abbe
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1647393249394
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

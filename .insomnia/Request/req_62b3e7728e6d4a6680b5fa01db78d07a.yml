@@ -1,0 +1,30 @@
+_id: req_62b3e7728e6d4a6680b5fa01db78d07a
+type: Request
+parentId: fld_16d52dfc539d40e7ad81b989d24a5485
+modified: 1663206579778
+created: 1663206579778
+url: "{{ _.base_url }}/verifyToken"
+name: Verify
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"email": "leofusinato@hotmail.com",
+    	"token": "368952"
+    } 
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_bf6d2179266c4e619a49890c6c7052e6
+authentication: {}
+metaSortKey: -1642668664435.125
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
