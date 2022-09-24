@@ -1,0 +1,23 @@
+_id: req_55b65473898e43ecb06fb147486da884
+type: Request
+parentId: fld_b3fbadc897e9488fa3cdd9cff0ff45b9
+modified: 1663206586933
+created: 1663206586933
+url: "{{ _.base_url }}/users"
+name: List
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1646271367373
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

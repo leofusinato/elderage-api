@@ -1,0 +1,34 @@
+_id: req_ba669a2d6f594e668a71e8438d5d3674
+type: Request
+parentId: fld_20fff26ca3e04da38deec87ee5b47cca
+modified: 1663206623749
+created: 1663206623749
+url: "{{ _.base_url
+  }}/aged/7b2fe0a0-e266-49dc-963f-80a6e11ddce6/contact/f48dc74b-4bda-4d90-982a-\
+  adf64693b307"
+name: Update
+description: ""
+method: PUT
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"type": 1,
+    	"description": "(47) 99999991"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_6f4ae7829ac94120b154ef17cb2c963a
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1646526227597
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

@@ -1,0 +1,38 @@
+_id: req_461c95e7bef546e1b999e70965602c53
+type: Request
+parentId: fld_3be207db0ad842cbae4c673e77736035
+modified: 1663206623755
+created: 1663206623755
+url: "{{ _.base_url }}/aged/7b2fe0a0-e266-49dc-963f-80a6e11ddce6/medication"
+name: Create
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"description": "Doril", 
+    	"details": "Remédio para pressão alta",
+    	"time_type": 2, 
+    	"schedules": [
+    		"08:00",
+    		"16:00",
+    		"00:00"
+    	]
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_56d0008b1e93442e818bd5e1f1e8ef40
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1647118577284
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

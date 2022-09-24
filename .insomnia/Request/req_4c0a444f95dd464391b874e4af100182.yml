@@ -1,0 +1,33 @@
+_id: req_4c0a444f95dd464391b874e4af100182
+type: Request
+parentId: fld_bccccfe7ecf240e0b92ae4faa0333afb
+modified: 1663206623791
+created: 1663206623791
+url: "{{ _.base_url }}/agedEvent/e0f8d498-fc8d-4559-aa52-e3d8c70fc323"
+name: Update
+description: ""
+method: PUT
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"local": "Casa", 
+    	"description": "Visita fonoaudióloga 123", 
+    	"date": "2022-01-07 09:00:00"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_4347c98239b84bf7a5375c3ee4bfec26
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1656604948070.25
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

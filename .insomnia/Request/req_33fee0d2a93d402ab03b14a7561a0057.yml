@@ -1,0 +1,23 @@
+_id: req_33fee0d2a93d402ab03b14a7561a0057
+type: Request
+parentId: fld_cfb1b8e3c17c43b4b244247855f0a138
+modified: 1663206628774
+created: 1663206628774
+url: "{{ _.base_url }}/invite/guest"
+name: Guest
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1647359322094
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

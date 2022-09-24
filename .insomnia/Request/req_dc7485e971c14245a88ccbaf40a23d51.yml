@@ -1,0 +1,23 @@
+_id: req_dc7485e971c14245a88ccbaf40a23d51
+type: Request
+parentId: fld_bccccfe7ecf240e0b92ae4faa0333afb
+modified: 1663206623789
+created: 1663206623789
+url: "{{ _.base_url }}/agedEvent/e0f8d498-fc8d-4559-aa52-e3d8c70fc323"
+name: List from id
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1656582699704.5
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

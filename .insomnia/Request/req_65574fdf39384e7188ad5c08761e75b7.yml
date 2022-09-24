@@ -1,0 +1,27 @@
+_id: req_65574fdf39384e7188ad5c08761e75b7
+type: Request
+parentId: fld_c476f6614030486c908fcce73c5be170
+modified: 1663206633576
+created: 1663206633576
+url: "{{ _.base_url }}/checkin/aged/7b2fe0a0-e266-49dc-963f-80a6e11ddce6"
+name: List by aged
+description: ""
+method: GET
+body: {}
+parameters:
+  - id: pair_962798537fe64adcb3c148c493db6592
+    name: date
+    value: 2022-03-17
+    description: ""
+headers: []
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1647425513051.125
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

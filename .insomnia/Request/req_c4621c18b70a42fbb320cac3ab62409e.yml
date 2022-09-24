@@ -1,0 +1,40 @@
+_id: req_c4621c18b70a42fbb320cac3ab62409e
+type: Request
+parentId: fld_3be207db0ad842cbae4c673e77736035
+modified: 1663206623763
+created: 1663206623763
+url: "{{ _.base_url
+  }}/aged/7b2fe0a0-e266-49dc-963f-80a6e11ddce6/medication/96827c2c-5d9f-43d0-89\
+  31-786d28c4e84d"
+name: Update
+description: ""
+method: PUT
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"description": "Eno", 
+    	"details": "Para quando estiver com dificuldades para comer",
+    	"time_type": 1, 
+    	"schedules": [
+    		"12:00",
+    		"18:00",
+    		"04:00"
+    	]
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_56d0008b1e93442e818bd5e1f1e8ef40
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1647014215440.5
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

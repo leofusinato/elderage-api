@@ -1,0 +1,37 @@
+_id: req_8c72227f0b88473a8753daf67ca41141
+type: Request
+parentId: fld_a1a3b2d19d484159975594126f31197e
+modified: 1663206623772
+created: 1663206623772
+url: "{{ _.base_url }}/anamnesis/"
+name: Create
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"aged_id": "a673659e-6e8e-48cb-9375-8422026012ba",
+    	"heart_rate": 70,
+    	"respiratory_frequency": 70,
+    	"temperature": 35,
+    	"glucose_level": 50,
+    	"weight": 75,
+    	"observations": "Tudo tranquilo"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_bdca88be12064cd8a26174f945f5eca3
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1656538203048
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

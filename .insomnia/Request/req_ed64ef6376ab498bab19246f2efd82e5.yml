@@ -1,0 +1,23 @@
+_id: req_ed64ef6376ab498bab19246f2efd82e5
+type: Request
+parentId: fld_20fff26ca3e04da38deec87ee5b47cca
+modified: 1663206623744
+created: 1663206623744
+url: "{{ _.base_url }}/aged/7b2fe0a0-e266-49dc-963f-80a6e11ddce6/contact"
+name: List
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1646701129910
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

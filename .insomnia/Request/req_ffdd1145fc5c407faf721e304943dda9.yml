@@ -1,0 +1,23 @@
+_id: req_ffdd1145fc5c407faf721e304943dda9
+type: Request
+parentId: fld_cfb1b8e3c17c43b4b244247855f0a138
+modified: 1663206628768
+created: 1663206628768
+url: "{{ _.base_url }}/invite/384b4ec7-32df-4266-918c-12920b42b0f5/decline"
+name: Decline
+description: ""
+method: PATCH
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1647325394794
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

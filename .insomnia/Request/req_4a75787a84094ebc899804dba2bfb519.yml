@@ -1,0 +1,36 @@
+_id: req_4a75787a84094ebc899804dba2bfb519
+type: Request
+parentId: fld_a1a3b2d19d484159975594126f31197e
+modified: 1663206623774
+created: 1663206623774
+url: "{{ _.base_url }}/anamnesis/38ae50ad-24ab-4bb4-88b0-52a95d6ce334"
+name: Update
+description: ""
+method: PUT
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"heart_rate": 70,
+    	"respiratory_frequency": 70,
+    	"temperature": 35,
+    	"glucose_level": 50,
+    	"weight": 75,
+    	"observations": "Tudo tranquilo"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_e8642d36470b43feb3836a2460b8e288
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1655897246386
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

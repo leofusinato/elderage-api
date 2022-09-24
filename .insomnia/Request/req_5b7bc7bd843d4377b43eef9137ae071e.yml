@@ -1,0 +1,23 @@
+_id: req_5b7bc7bd843d4377b43eef9137ae071e
+type: Request
+parentId: fld_a1a3b2d19d484159975594126f31197e
+modified: 1663206623776
+created: 1663206623776
+url: "{{ _.base_url }}/anamnesis/14f6eaad-6332-4f33-91fa-3dd0a6d9271d"
+name: Delete
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1656004072488
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

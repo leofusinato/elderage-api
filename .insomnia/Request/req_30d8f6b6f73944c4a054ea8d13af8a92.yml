@@ -1,0 +1,23 @@
+_id: req_30d8f6b6f73944c4a054ea8d13af8a92
+type: Request
+parentId: fld_c476f6614030486c908fcce73c5be170
+modified: 1663206633570
+created: 1663206633570
+url: "{{ _.base_url }}/checkin/medication/a78079b2-702f-4318-8ab3-5ddcd202e2aa"
+name: List by medication
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1647522304022.5
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

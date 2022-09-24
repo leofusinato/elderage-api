@@ -1,0 +1,47 @@
+_id: req_b60c53781e844b0884378931ca7f9567
+type: Request
+parentId: fld_777132489dff42d78e62a2db94419786
+modified: 1663206623803
+created: 1663206623803
+url: "{{ _.base_url }}/aged/7b2fe0a0-e266-49dc-963f-80a6e11ddce6"
+name: Update
+description: ""
+method: PUT
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"name": "Maria",
+    	"gender": "F",
+    	"birthdate": "1920-02-01",
+    	"address": "Qualquer rua 321",
+    	"city": "Ibirama 123",
+    	"state": "SC",
+    	"created_at": "2022-03-11T00:32:30.243Z",
+    	"user_id": "688e80b1-b083-4d7a-9c5f-67b2ba00fdef",
+    	"contacts": [
+    		{
+    			"id": "f48dc74b-4bda-4d90-982a-adf64693b307",
+    			"aged_id": "7b2fe0a0-e266-49dc-963f-80a6e11ddce6",
+    			"type": 1,
+    			"description": "(47) 99999991",
+    			"created_at": "2022-03-15T00:29:54.529Z"
+    		}
+    	]
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_a3e9901a2e844eb4900cab8a3f9a7ac0
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1647302776594
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

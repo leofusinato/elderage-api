@@ -1,0 +1,23 @@
+_id: req_ddfa8ec08812485cb2d42969f2bfb149
+type: Request
+parentId: fld_a1a3b2d19d484159975594126f31197e
+modified: 1663206623767
+created: 1663206623767
+url: "{{ _.base_url }}/anamnesis/aged/a673659e-6e8e-48cb-9375-8422026012ba"
+name: List from aged
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1656538202998
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

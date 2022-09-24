@@ -1,0 +1,27 @@
+_id: req_a2ef1af63f8c4d1a886d567a944f7455
+type: Request
+parentId: fld_777132489dff42d78e62a2db94419786
+modified: 1663206623805
+created: 1663206623805
+url: "{{ _.base_url }}/aged/7b2fe0a0-e266-49dc-963f-80a6e11ddce6"
+name: List from id
+description: ""
+method: GET
+body: {}
+parameters: []
+headers:
+  - id: pair_f496acecd3174e18a92f49d710121f16
+    name: ""
+    value: ""
+    description: ""
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1646700682778
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

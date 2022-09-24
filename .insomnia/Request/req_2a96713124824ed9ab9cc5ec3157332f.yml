@@ -1,0 +1,31 @@
+_id: req_2a96713124824ed9ab9cc5ec3157332f
+type: Request
+parentId: fld_b3fbadc897e9488fa3cdd9cff0ff45b9
+modified: 1663206586929
+created: 1663206586929
+url: "{{ _.base_url }}/users"
+name: Create
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"email": "leofusinato3@hotmail.com",
+    	"name": "Leonardo Alex Fusinato",
+    	"password": "123"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_e93bcd319d1c4e89aea789276d970675
+authentication: {}
+metaSortKey: -1646269897699
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
