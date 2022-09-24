@@ -10,10 +10,14 @@ import RefreshToken from '../models/RefreshToken';
 
 class AuthController {
   async authenticate(req: Request, res: Response) {
-    const repository = getRepository(User);
+    const userRepository = getRepository(User);
+    const refreshRepository = getRepository(RefreshToken);
     const { email, password } = req.body;
 
-    const user = await repository.findOne({ where: { email } });
+    const user = await userRepository.findOne({
+      where: { email },
+    });
+
     if (!user) {
       return res.sendStatus(401);
     }
@@ -23,6 +27,10 @@ class AuthController {
       return res.sendStatus(401);
     }
 
+    const refreshToken = await refreshRepository.findOne({
+      where: { user_id: user.id },
+    });
+
     const token = jwt.sign(
       { id: user.id },
       process.env.PASSWORD_JWT_SECRET_KEY,
@@ -31,7 +39,7 @@ class AuthController {
 
     delete user.password;
 
-    return res.json({ user, token });
+    return res.json({ user, token, refreshToken: refreshToken.id });
   }
 
   async forgotPassword(req: Request, res: Response) {
@@ -133,7 +141,7 @@ class AuthController {
     const { refresh_token } = req.body;
     // const userRepo = getRepository(User);
     const refreshTokenRepo = getRepository(RefreshToken);
-
+    console.log(refresh_token);
     try {
       const refreshToken = await refreshTokenRepo.findOne({
         id: refresh_token,
