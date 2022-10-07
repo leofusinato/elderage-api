@@ -61,7 +61,7 @@ class AgedController {
     try {
       const aged = await agedRepository.findOne(
         { id: aged_id },
-        { relations: ['contacts'] }
+        { relations: ['contacts', 'medications'] }
       );
       if (!aged) {
         return res.status(404).json({ message: 'Idoso não encontrado' });
