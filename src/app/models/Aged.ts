@@ -4,13 +4,10 @@ import {
   Column,
   CreateDateColumn,
   OneToMany,
-  ManyToOne,
-  JoinColumn,
 } from 'typeorm';
 import AgedContact from './AgedContact';
 import AgedMedication from './AgedMedication';
 import Anamnesis from './Anamnesis';
-import User from './User';
 
 @Entity('ageds')
 class Aged {
@@ -46,13 +43,6 @@ class Aged {
 
   @OneToMany(() => Anamnesis, (anamnesis) => anamnesis.aged)
   anamnesis: Anamnesis[];
-
-  @Column()
-  user_id: string;
-
-  @ManyToOne(() => User, (user) => user.ageds)
-  @JoinColumn({ name: 'user_id' })
-  user: User;
 }
 
 export default Aged;

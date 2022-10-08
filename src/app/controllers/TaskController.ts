@@ -39,7 +39,7 @@ class TaskController {
             },
           });
           checkins.forEach((checkin) => {
-            done.push(checkin);
+            done.push({ ...checkin, medication });
           });
         }
       }

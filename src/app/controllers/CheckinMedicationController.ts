@@ -9,7 +9,7 @@ class CheckinMedicationController {
     const checkinRepo = getRepository(CheckinMedication);
     const medicationRepo = getRepository(AgedMedication);
 
-    const { medication_id, date_hour_applied } = req.body;
+    const { medication_id, date_hour_applied, schedule_id } = req.body;
 
     try {
       const medication = await medicationRepo.findOne({ id: medication_id });
@@ -20,6 +20,7 @@ class CheckinMedicationController {
         user_id: req.userId,
         medication_id,
         date_hour_applied,
+        schedule_id,
       });
       await checkinRepo.save(checkin);
 

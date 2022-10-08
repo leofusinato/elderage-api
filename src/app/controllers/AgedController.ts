@@ -1,13 +1,17 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
+import { userMapper } from '../mappers/UserMapper';
 import Aged from '../models/Aged';
 import AgedContact from '../models/AgedContact';
+import AgedUser from '../models/AgedUser';
 import User from '../models/User';
+import { getOwnerUserFromAged } from '../repositories/AgedRespository';
 
 class AgedController {
   async store(req: Request, res: Response) {
     const agedRepository = getRepository(Aged);
     const userRepository = getRepository(User);
+    const agedUsersRepo = getRepository(AgedUser);
     const contactRepository = getRepository(AgedContact);
 
     const { name, birthdate, gender, address, city, state, contacts } =
@@ -17,7 +21,6 @@ class AgedController {
       const userId = req.userId;
 
       const aged = agedRepository.create({
-        user_id: userId,
         name,
         birthdate,
         gender,
@@ -25,7 +28,12 @@ class AgedController {
         city,
         state,
       });
-      await agedRepository.save(aged);
+      const newAged = await agedRepository.save(aged);
+      await agedUsersRepo.save({
+        usersId: userId,
+        agedsId: newAged.id,
+        owner: true,
+      });
 
       contacts.map(async (contact: AgedContact) => {
         const newContact = contactRepository.create({
@@ -42,7 +50,6 @@ class AgedController {
         { relations: ['ageds'] }
       );
 
-      user.ageds = [...user.ageds, aged];
       userRepository.save(user);
 
       return res.json(aged);
@@ -53,7 +60,12 @@ class AgedController {
   async list(req: Request, res: Response) {
     const agedRepository = getRepository(Aged);
     const ageds = await agedRepository.find();
-    return res.json(ageds);
+    const list = [];
+    for (let aged of ageds) {
+      const mapped = await userMapper(aged, req.userId);
+      list.push(mapped);
+    }
+    return res.json(list);
   }
   async index(req: Request, res: Response) {
     const { aged_id } = req.params;
@@ -66,7 +78,8 @@ class AgedController {
       if (!aged) {
         return res.status(404).json({ message: 'Idoso não encontrado' });
       }
-      return res.json(aged);
+      const mappedUser = await userMapper(aged, req.userId);
+      return res.json(mappedUser);
     } catch {
       return res.sendStatus(400);
     }
@@ -83,7 +96,8 @@ class AgedController {
       if (!aged) {
         return res.status(404).json({ message: 'Idoso não encontrado' });
       }
-      if (aged.user_id != req.userId) {
+      const ownerUser = await getOwnerUserFromAged(aged.id);
+      if (ownerUser.usersId != req.userId) {
         return res
           .status(403)
           .json({ message: 'Apenas quem cadastrou o idoso pode excluí-lo' });
@@ -111,7 +125,8 @@ class AgedController {
       if (!aged) {
         return res.status(404).json({ message: 'Idoso não encontrado' });
       }
-      if (aged.user_id != req.userId) {
+      const ownerUser = await getOwnerUserFromAged(aged.id);
+      if (ownerUser.usersId != req.userId) {
         return res
           .status(403)
           .json({ message: 'Apenas quem cadastrou o idoso pode alterá-lo' });
