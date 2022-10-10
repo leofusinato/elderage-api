@@ -63,17 +63,17 @@ async function getUserTasks(userId: string, date: Date) {
                   AND schedule_id = '${schedule.id}'
                   AND date_hour_applied BETWEEN '${startDateFormatted}' AND '${endDateFormatted}'
               `);
-            console.log(`
-              SELECT *
-                FROM checkin_medications
-              WHERE medication_id = '${medication.id}'
-                AND schedule_id = '${schedule.id}'
-                AND date_hour_applied BETWEEN '${startDateFormatted}' AND '${endDateFormatted}'
-            `);
             if (exists.length == 0) {
               nextTasks.push({
-                ...medication,
-                aged,
+                medication: {
+                  description: medication.description,
+                  time_type: medication.time_type,
+                  details: medication.details,
+                },
+                aged: {
+                  gender: aged.gender,
+                  name: aged.name,
+                },
                 schedule: schedule.time,
                 schedule_id: schedule.id,
               });

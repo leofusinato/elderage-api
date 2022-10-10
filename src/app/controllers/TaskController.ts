@@ -32,15 +32,35 @@ class TaskController {
       let done = [];
       for (let aged of user.ageds) {
         for (let medication of aged.medications) {
-          const checkins = await checkinRepo.find({
-            where: {
-              medication_id: medication.id,
-              date_hour_applied: Between(startDateFormatted, endDateFormatted),
-            },
-          });
-          checkins.forEach((checkin) => {
-            done.push({ ...checkin, medication });
-          });
+          try {
+            const checkins = await checkinRepo.find({
+              where: {
+                medication_id: medication.id,
+                date_hour_applied: Between(
+                  startDateFormatted,
+                  endDateFormatted
+                ),
+              },
+              relations: ['medication', 'medication.aged', 'schedule'],
+            });
+            checkins.forEach((checkin) => {
+              done.push({
+                medication: {
+                  description: medication.description,
+                  time_type: medication.time_type,
+                  details: medication.details,
+                },
+                aged: {
+                  gender: checkin.medication.aged.gender,
+                  name: checkin.medication.aged.name,
+                },
+                schedule: checkin.schedule.time,
+                schedule_id: checkin.schedule_id,
+              });
+            });
+          } catch (e) {
+            console.log(e);
+          }
         }
       }
       const tasks = await getUserTasks(req.userId, dateFormatted);
