@@ -66,6 +66,7 @@ async function getUserTasks(userId: string, date: Date) {
             if (exists.length == 0) {
               nextTasks.push({
                 medication: {
+                  id: medication.id,
                   description: medication.description,
                   time_type: medication.time_type,
                   details: medication.details,

@@ -46,6 +46,7 @@ class TaskController {
             checkins.forEach((checkin) => {
               done.push({
                 medication: {
+                  id: medication.id,
                   description: medication.description,
                   time_type: medication.time_type,
                   details: medication.details,
