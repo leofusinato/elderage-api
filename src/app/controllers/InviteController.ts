@@ -13,7 +13,10 @@ class InviteController {
   }
   async guest(req: Request, res: Response) {
     const inviteRepo = getRepository(Invite);
-    const invites = await inviteRepo.find({ guest_id: req.userId });
+    const invites = await inviteRepo.find({
+      where: { guest_id: req.userId },
+      relations: ['aged', 'user'],
+    });
     return res.json(invites);
   }
   async store(req: Request, res: Response) {
@@ -21,10 +24,10 @@ class InviteController {
     const userRepo = getRepository(User);
     const inviteRepo = getRepository(Invite);
 
-    const { aged_id, guest_id } = req.body;
+    const { aged_id, guest_email } = req.body;
 
     try {
-      const guest = await userRepo.findOne({ id: guest_id });
+      const guest = await userRepo.findOne({ email: guest_email });
       if (!guest) {
         return res.status(404).json({ message: 'Usuário não encontrado' });
       }
@@ -36,7 +39,7 @@ class InviteController {
       const invite = inviteRepo.create({
         situation: 1,
         aged_id,
-        guest_id,
+        guest_id: guest.id,
         user_id: req.userId,
       });
       await inviteRepo.save(invite);

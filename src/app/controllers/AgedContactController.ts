@@ -70,7 +70,7 @@ class AgedContactController {
   }
   async update(req: Request, res: Response) {
     const { aged_id, contact_id } = req.params;
-    const { type, description } = req.body;
+    const { type, description, name } = req.body;
 
     try {
       const agedRepository = getRepository(Aged);
@@ -85,7 +85,7 @@ class AgedContactController {
       if (!contact) {
         return res.status(404).json({ message: 'Contato não encontrado' });
       }
-      const updated = { ...contact, type, description };
+      const updated = { ...contact, type, description, name };
       await repository.save(updated);
 
       return res.json(updated);

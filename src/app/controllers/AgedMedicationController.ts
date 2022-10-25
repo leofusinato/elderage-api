@@ -41,6 +41,7 @@ class AgedMedicationController {
 
       return res.send(medication);
     } catch (err) {
+      console.log('erro ', err);
       return res.sendStatus(400);
     }
   }
