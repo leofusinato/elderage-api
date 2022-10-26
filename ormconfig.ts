@@ -12,6 +12,8 @@ module.exports = {
     migrationsDir: 'src/database/migrations',
   },
   extra: {
-    ssl: true,
+    ssl: {
+      rejectUnauthorized: false,
+    },
   },
 };
