@@ -5,8 +5,10 @@
   "license": "MIT",
   "type": "modules",
   "scripts": {
+    "build": "tsc",
     "dev": "npx nodemon --exec ts-node --files src/index.ts",
-    "typeorm": "npx ts-node ./node_modules/typeorm/cli.js"
+    "typeorm": "npx ts-node ./node_modules/typeorm/cli.js",
+    "start:prod": "node dist/src/index.js"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
