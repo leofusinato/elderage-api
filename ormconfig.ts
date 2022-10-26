@@ -9,7 +9,7 @@ module.exports = {
   entities: ['dist/src/app/models/**/*.ts'],
   migrations: ['dist/src/database/migrations/**/*.ts'],
   cli: {
-    migrationsDir: 'src/database/migrations',
+    migrationsDir: 'dist/src/database/migrations',
   },
   extra: {
     ssl: {
