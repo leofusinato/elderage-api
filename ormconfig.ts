@@ -6,14 +6,28 @@ module.exports = {
   // username: process.env.DB_USER,
   // password: process.env.DB_PASSSWORD,
   // database: process.env.DB_NAME,
-  entities: ['dist/src/app/models/**/*.js'],
-  migrations: ['dist/src/database/migrations/**/*.js'],
+  entities: [
+    process.env.NODE_ENV === 'dev'
+      ? 'src/app/models/**/*.ts'
+      : 'dist/src/app/models/**/*.js',
+  ],
+  migrations: [
+    process.env.NODE_ENV === 'dev'
+      ? 'src/database/migrations/**/*.ts'
+      : 'dist/src/database/migrations/**/*.js',
+  ],
   cli: {
-    migrationsDir: 'dist/src/database/migrations',
+    migrationsDir:
+      process.env.NODE_ENV === 'dev'
+        ? 'src/database/migrations'
+        : 'dist/src/database/migrations',
   },
-  extra: {
-    ssl: {
-      rejectUnauthorized: false,
-    },
-  },
+  extra:
+    process.env.NODE_ENV === 'prod'
+      ? {
+          ssl: {
+            rejectUnauthorized: true,
+          },
+        }
+      : null,
 };
