@@ -71,6 +71,7 @@ class AgedMedicationController {
   async delete(req: Request, res: Response) {
     const agedRepo = getRepository(Aged);
     const medicationRepo = getRepository(AgedMedication);
+    const scheduleRepo = getRepository(ScheduleMedication);
     const { aged_id, medication_id } = req.params;
 
     try {
@@ -83,11 +84,14 @@ class AgedMedicationController {
       if (!medication) {
         return res.status(404).json({ message: 'Medicação não encontrada' });
       }
-
+      if (medication.time_type === 2) {
+        await scheduleRepo.delete({ medication_id });
+      }
       await medicationRepo.delete({ id: medication_id });
 
       return res.send();
     } catch (err) {
+      console.log(err);
       return res.sendStatus(400);
     }
   }
@@ -115,7 +119,7 @@ class AgedMedicationController {
         description,
         details,
         time_type,
-        time_description,
+        time_description: time_description || null,
       };
       await medicationRepo.save(updated);
 
@@ -132,6 +136,7 @@ class AgedMedicationController {
 
       return res.json(updated);
     } catch (err) {
+      console.log(err);
       return res.sendStatus(400);
     }
   }

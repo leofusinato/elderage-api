@@ -38,7 +38,7 @@ class AgedMedication {
   time_type: number;
 
   @Column()
-  time_description: number;
+  time_description?: number;
 
   @CreateDateColumn()
   created_at: Date;
