@@ -6,14 +6,14 @@ module.exports = {
   // username: process.env.DB_USER,
   // password: process.env.DB_PASSSWORD,
   // database: process.env.DB_NAME,
-  entities: ['src/app/models/**/*.ts'],
-  migrations: ['src/database/migrations/**/*.ts'],
+  entities: ['dist/src/app/models/**/*.js'],
+  migrations: ['dist/src/database/migrations/**/*.js'],
   cli: {
-    migrationsDir: 'src/database/migrations',
+    migrationsDir: 'dist/src/database/migrations',
   },
-  // extra: {
-  //   ssl: {
-  //     rejectUnauthorized: false,
-  //   },
-  // },
+  extra: {
+    ssl: {
+      rejectUnauthorized: false,
+    },
+  },
 };
