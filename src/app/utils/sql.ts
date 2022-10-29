@@ -46,8 +46,16 @@ async function getUserTasks(userId: string, date: Date) {
           });
           if (countCheckinsToday <= medication.time_description) {
             nextTasks.push({
-              ...medication,
-              aged,
+              medication: {
+                id: medication.id,
+                description: medication.description,
+                time_type: medication.time_type,
+                details: medication.details,
+              },
+              aged: {
+                gender: aged.gender,
+                name: aged.name,
+              },
               remaining: medication.time_description - countCheckinsToday,
             });
           }

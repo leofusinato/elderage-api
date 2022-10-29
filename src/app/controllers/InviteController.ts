@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
+import mailer, { DEFAULT_FROM_EMAIL } from '../modules/mailer';
 
 import Aged from '../models/Aged';
 import Invite from '../models/Invite';
@@ -43,6 +44,28 @@ class InviteController {
         user_id: req.userId,
       });
       await inviteRepo.save(invite);
+
+      const user = await userRepo.findOne({ id: req.userId });
+
+      mailer.sendMail(
+        {
+          to: guest.email,
+          from: DEFAULT_FROM_EMAIL,
+          subject: 'Elderage | Convite',
+          html: {
+            content: `<p>Você recebeu um convite para cuidar do idoso ${aged.name}! O convite foi feito pelo usuário ${user.name}</p>`,
+          },
+        },
+        (err) => {
+          if (err) {
+            return res.status(400).send({
+              message: 'Não foi possível enviar e-mail, tente novamente',
+            });
+          }
+          return res.send();
+        }
+      );
+
       return res.json(invite);
     } catch {
       return res.sendStatus(400);
@@ -56,7 +79,10 @@ class InviteController {
     const { invite_id } = req.params;
 
     try {
-      const invite = await inviteRepo.findOne({ id: invite_id });
+      const invite = await inviteRepo.findOne(
+        { id: invite_id },
+        { relations: ['user'] }
+      );
       if (!invite) {
         return res.status(404).json({ message: 'Convite não encontrado' });
       }
@@ -70,6 +96,25 @@ class InviteController {
       await userRepo.save(user);
       await inviteRepo.save({ ...invite, situation: 2 });
 
+      mailer.sendMail(
+        {
+          to: invite.user.email,
+          from: DEFAULT_FROM_EMAIL,
+          subject: 'Elderage | Convite Aceito',
+          html: {
+            content: `<p>Seu convite enviado para ${user.name} para cuidar do idoso ${aged.name} foi aceito!</p>`,
+          },
+        },
+        (err) => {
+          if (err) {
+            return res.status(400).send({
+              message: 'Não foi possível enviar e-mail, tente novamente',
+            });
+          }
+          return res.send();
+        }
+      );
+
       return res.sendStatus(200);
     } catch (err) {
       console.log(err);
@@ -82,12 +127,34 @@ class InviteController {
     const { invite_id } = req.params;
 
     try {
-      const invite = await inviteRepo.findOne({ id: invite_id });
+      const invite = await inviteRepo.findOne(
+        { id: invite_id },
+        { relations: ['user', 'guest', 'aged'] }
+      );
       if (!invite) {
         return res.status(404).json({ message: 'Convite não encontrado' });
       }
 
       await inviteRepo.save({ ...invite, situation: 3 });
+
+      mailer.sendMail(
+        {
+          to: invite.user.email,
+          from: DEFAULT_FROM_EMAIL,
+          subject: 'Elderage | Convite Recusado',
+          html: {
+            content: `<p>Seu convite enviado para ${invite.guest.name} para cuidar do idoso ${invite.aged.name} foi recusado.</p>`,
+          },
+        },
+        (err) => {
+          if (err) {
+            return res.status(400).send({
+              message: 'Não foi possível enviar e-mail, tente novamente',
+            });
+          }
+          return res.send();
+        }
+      );
 
       return res.sendStatus(200);
     } catch (err) {

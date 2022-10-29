@@ -3,7 +3,7 @@ import { getRepository } from 'typeorm';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
-import mailer from '../modules/mailer';
+import mailer, { DEFAULT_FROM_EMAIL } from '../modules/mailer';
 
 import User from '../models/User';
 import RefreshToken from '../models/RefreshToken';
@@ -63,7 +63,7 @@ class AuthController {
       mailer.sendMail(
         {
           to: email,
-          from: 'leonardo.alex.fusinato@gmail.com',
+          from: DEFAULT_FROM_EMAIL,
           html: {
             content: `<p>Você esqueceu a sua senha? Não tem problema, utilize este token: ${token}</p>`,
           },
@@ -139,9 +139,8 @@ class AuthController {
 
   async refreshToken(req: Request, res: Response) {
     const { refresh_token } = req.body;
-    // const userRepo = getRepository(User);
     const refreshTokenRepo = getRepository(RefreshToken);
-    console.log(refresh_token);
+
     try {
       const refreshToken = await refreshTokenRepo.findOne({
         id: refresh_token,

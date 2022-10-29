@@ -28,7 +28,7 @@ class HomeController {
     );
 
     const completedTasks = await checkinsRepository.find({
-      where: { created_at: Between(dateStart, date) },
+      where: { created_at: Between(dateStart, date), user_id: req.userId },
       relations: ['medication', 'medication.aged'],
     });
 

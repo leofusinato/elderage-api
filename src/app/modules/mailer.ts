@@ -5,6 +5,8 @@ import mailConfig from '../config/mail.json';
 
 const { host, port, user, pass } = mailConfig;
 
+export const DEFAULT_FROM_EMAIL = 'elderageapp@example.com';
+
 var transport = nodemailer.createTransport({
   host,
   port,
