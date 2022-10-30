@@ -13,7 +13,7 @@ export class updateTiimestampColumns1667051081228
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(`
         ALTER TABLE checkin_medications
-        ALTER COLUMN date_hour_applied TYPE TIMESTAMP WITH TIME ZONE
+        ALTER COLUMN date_hour_applied TYPE TIMESTAMP WITHOUT TIME ZONE
     `);
   }
 }

@@ -3,7 +3,10 @@ import { getRepository } from 'typeorm';
 import { userMapper } from '../mappers/UserMapper';
 import Aged from '../models/Aged';
 import AgedContact from '../models/AgedContact';
+import AgedMedication from '../models/AgedMedication';
 import AgedUser from '../models/AgedUser';
+import Invite from '../models/Invite';
+import ScheduleMedication from '../models/ScheduleMedication';
 import User from '../models/User';
 import { getOwnerUserFromAged } from '../repositories/AgedRespository';
 
@@ -87,6 +90,9 @@ class AgedController {
   async delete(req: Request, res: Response) {
     const agedRepo = getRepository(Aged);
     const contactsRepo = getRepository(AgedContact);
+    const schedulesRepo = getRepository(ScheduleMedication);
+    const medicationsRepo = getRepository(AgedMedication);
+    const invitesRepo = getRepository(Invite);
 
     const { aged_id } = req.params;
 
@@ -103,6 +109,17 @@ class AgedController {
           .json({ message: 'Apenas quem cadastrou o idoso pode excluí-lo' });
       }
       await contactsRepo.delete({ aged_id });
+
+      const medications = await medicationsRepo.find({ where: { aged_id } });
+      for (let medication of medications) {
+        await schedulesRepo.delete({
+          medication_id: medication.id,
+        });
+        await medicationsRepo.delete({ id: medication.id });
+      }
+
+      await invitesRepo.delete({ aged_id });
+
       await agedRepo.delete({ id: aged_id });
 
       return res.sendStatus(200);
