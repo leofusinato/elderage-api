@@ -27,15 +27,13 @@ class HomeController {
       date.getDate()
     );
 
+    console.log({ dateStart, date });
     const completedTasks = await checkinsRepository.find({
       where: { created_at: Between(dateStart, date), user_id: req.userId },
       relations: ['medication', 'medication.aged'],
     });
 
-    const nextTasks = await getUserTasks(
-      req.userId,
-      getLocaledDate(new Date())
-    );
+    const nextTasks = await getUserTasks(req.userId, date);
     if (!nextTasks) {
       return res.sendStatus(400);
     }
