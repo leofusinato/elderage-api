@@ -32,7 +32,6 @@ class HomeController {
       relations: ['medication', 'medication.aged'],
     });
 
-    console.log('home date ', new Date());
     const nextTasks = await getUserTasks(
       req.userId,
       getLocaledDate(new Date())

@@ -32,6 +32,8 @@ async function getUserTasks(userId: string, date: Date) {
       59
     );
 
+    console.log({ dateStart, dateEnd });
+
     let nextTasks = [];
     for (let aged of user.ageds) {
       const medications = aged.medications;
