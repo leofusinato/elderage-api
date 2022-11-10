@@ -67,6 +67,13 @@ async function getUserTasks(userId: string, date: Date) {
               const endDateFormatted = `${dateEnd.getFullYear()}-${
                 dateEnd.getMonth() + 1
               }-${dateEnd.getDate()} 23:59:59`;
+              console.log(`
+              SELECT *
+                FROM checkin_medications
+              WHERE medication_id = '${medication.id}'
+                AND schedule_id = '${schedule.id}'
+                AND date_hour_applied BETWEEN '${startDateFormatted}' AND '${endDateFormatted}'
+            `);
               const exists = await entityManager.query(`
                   SELECT *
                     FROM checkin_medications
