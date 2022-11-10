@@ -27,9 +27,18 @@ class HomeController {
       date.getDate()
     );
 
-    console.log({ dateStart, date });
+    const dateEnd = new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate(),
+      23,
+      59,
+      59
+    );
+
+    console.log({ dateStart, dateEnd });
     const completedTasks = await checkinsRepository.find({
-      where: { created_at: Between(dateStart, date), user_id: req.userId },
+      where: { created_at: Between(dateStart, dateEnd), user_id: req.userId },
       relations: ['medication', 'medication.aged'],
     });
 
