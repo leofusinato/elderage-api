@@ -27,9 +27,16 @@ class HomeController {
       date.getDate()
     );
 
-    const dateEnd = getLocaledDate(
-      new Date(date.getFullYear(), date.getMonth(), date.getDate(), 23, 59, 59)
+    const dateEnd = new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate(),
+      23,
+      59,
+      59
     );
+
+    dateEnd.setHours(dateEnd.getHours() + 3);
 
     console.log({ dateStart, dateEnd });
     const completedTasks = await checkinsRepository.find({
