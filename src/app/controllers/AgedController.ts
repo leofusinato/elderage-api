@@ -115,8 +115,8 @@ class AgedController {
         await schedulesRepo.delete({
           medication_id: medication.id,
         });
-        await medicationsRepo.delete({ id: medication.id });
       }
+      await medicationsRepo.delete({ aged_id });
 
       await invitesRepo.delete({ aged_id });
 
