@@ -32,6 +32,8 @@ async function getUserTasks(userId: string, date: Date) {
       59
     );
 
+    dateEnd.setHours(dateEnd.getHours() + 3);
+
     let nextTasks = [];
     for (let aged of user.ageds) {
       const medications = aged.medications;
