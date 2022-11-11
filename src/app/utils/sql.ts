@@ -36,20 +36,23 @@ async function getUserTasks(userId: string, date: Date) {
 
     dateEnd.setHours(dateEnd.getHours() + 3);
 
-    const dateStartToCompare = new Date(
+    const dateEndToCompare = new Date(
       date.getFullYear(),
       date.getMonth(),
-      date.getDate()
+      date.getDate(),
+      23,
+      59,
+      59
     );
 
-    dateStartToCompare.setHours(dateStartToCompare.getHours() + 3);
-    console.log(dateStartToCompare);
+    dateEndToCompare.setHours(dateEndToCompare.getHours() + 3);
+    console.log(dateEndToCompare);
 
     let nextTasks = [];
     for (let aged of user.ageds) {
       const medications = aged.medications;
       for (let medication of medications) {
-        if (medication.created_at <= dateStartToCompare) {
+        if (medication.created_at <= dateEndToCompare) {
           const startDateFormatted = `${dateStart.getFullYear()}-${
             dateStart.getMonth() + 1
           }-${dateStart.getDate()}`;
