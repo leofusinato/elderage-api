@@ -45,7 +45,7 @@ async function getUserTasks(userId: string, date: Date) {
               medication_id: medication.id,
               date_hour_applied: MoreThanOrEqual(startDateFormatted),
             });
-            if (countCheckinsToday <= medication.time_description) {
+            if (countCheckinsToday < medication.time_description) {
               nextTasks.push({
                 medication: {
                   id: medication.id,
