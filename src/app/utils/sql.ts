@@ -43,6 +43,7 @@ async function getUserTasks(userId: string, date: Date) {
     );
 
     dateStartToCompare.setHours(dateStartToCompare.getHours() + 3);
+    console.log(dateStartToCompare);
 
     let nextTasks = [];
     for (let aged of user.ageds) {
