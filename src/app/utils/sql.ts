@@ -1,6 +1,7 @@
 import { getManager, getRepository, MoreThanOrEqual } from 'typeorm';
 import CheckinMedication from '../models/CheckinMedication';
 import User from '../models/User';
+import { getLocaledDate } from './date';
 
 async function getUserTasks(userId: string, date: Date) {
   const userRepository = getRepository(User);
@@ -23,6 +24,7 @@ async function getUserTasks(userId: string, date: Date) {
       date.getMonth(),
       date.getDate()
     );
+
     const dateEnd = new Date(
       date.getFullYear(),
       date.getMonth(),
@@ -38,7 +40,7 @@ async function getUserTasks(userId: string, date: Date) {
     for (let aged of user.ageds) {
       const medications = aged.medications;
       for (let medication of medications) {
-        if (medication.created_at <= dateStart) {
+        if (medication.created_at <= getLocaledDate(dateStart)) {
           const startDateFormatted = `${dateStart.getFullYear()}-${
             dateStart.getMonth() + 1
           }-${dateStart.getDate()}`;
