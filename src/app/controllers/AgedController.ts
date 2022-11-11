@@ -5,6 +5,7 @@ import Aged from '../models/Aged';
 import AgedContact from '../models/AgedContact';
 import AgedMedication from '../models/AgedMedication';
 import AgedUser from '../models/AgedUser';
+import CheckinMedication from '../models/CheckinMedication';
 import Invite from '../models/Invite';
 import ScheduleMedication from '../models/ScheduleMedication';
 import User from '../models/User';
@@ -93,6 +94,7 @@ class AgedController {
     const schedulesRepo = getRepository(ScheduleMedication);
     const medicationsRepo = getRepository(AgedMedication);
     const invitesRepo = getRepository(Invite);
+    const checkinsRepo = getRepository(CheckinMedication);
 
     const { aged_id } = req.params;
 
@@ -112,10 +114,13 @@ class AgedController {
 
       const medications = await medicationsRepo.find({ where: { aged_id } });
       for (let medication of medications) {
+        await checkinsRepo.delete({ medication_id: medication.id });
+
         await schedulesRepo.delete({
           medication_id: medication.id,
         });
       }
+
       await medicationsRepo.delete({ aged_id });
 
       await invitesRepo.delete({ aged_id });
