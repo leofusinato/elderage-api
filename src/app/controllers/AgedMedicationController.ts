@@ -3,6 +3,7 @@ import { getRepository } from 'typeorm';
 
 import Aged from '../models/Aged';
 import AgedMedication from '../models/AgedMedication';
+import CheckinMedication from '../models/CheckinMedication';
 import ScheduleMedication from '../models/ScheduleMedication';
 
 class AgedMedicationController {
@@ -72,6 +73,8 @@ class AgedMedicationController {
     const agedRepo = getRepository(Aged);
     const medicationRepo = getRepository(AgedMedication);
     const scheduleRepo = getRepository(ScheduleMedication);
+    const checkinsRepo = getRepository(CheckinMedication);
+
     const { aged_id, medication_id } = req.params;
 
     try {
@@ -84,6 +87,8 @@ class AgedMedicationController {
       if (!medication) {
         return res.status(404).json({ message: 'Medicação não encontrada' });
       }
+
+      await checkinsRepo.delete({ medication_id });
       await scheduleRepo.delete({ medication_id });
       await medicationRepo.delete({ id: medication_id });
 
