@@ -43,7 +43,7 @@ class TaskController {
               },
               relations: ['medication', 'medication.aged', 'schedule'],
             });
-            checkins.forEach((checkin) => {
+            for (let checkin of checkins) {
               done.push({
                 medication: {
                   id: medication.id,
@@ -58,7 +58,7 @@ class TaskController {
                 schedule: checkin.schedule.time,
                 schedule_id: checkin.schedule_id,
               });
-            });
+            }
           } catch (e) {
             console.log(e);
           }
