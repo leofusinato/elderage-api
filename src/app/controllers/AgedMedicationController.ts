@@ -84,9 +84,7 @@ class AgedMedicationController {
       if (!medication) {
         return res.status(404).json({ message: 'Medicação não encontrada' });
       }
-      if (medication.time_type === 2) {
-        await scheduleRepo.delete({ medication_id });
-      }
+      await scheduleRepo.delete({ medication_id });
       await medicationRepo.delete({ id: medication_id });
 
       return res.send();
