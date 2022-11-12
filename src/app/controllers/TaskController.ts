@@ -36,6 +36,7 @@ class TaskController {
             const checkins = await checkinRepo.find({
               where: {
                 medication_id: medication.id,
+                user_id: req.userId,
                 date_hour_applied: Between(
                   startDateFormatted,
                   endDateFormatted
@@ -43,6 +44,7 @@ class TaskController {
               },
               relations: ['medication', 'medication.aged', 'schedule'],
             });
+            console.log(checkins.length);
             for (let checkin of checkins) {
               done.push({
                 medication: {
@@ -55,7 +57,8 @@ class TaskController {
                   gender: checkin.medication.aged.gender,
                   name: checkin.medication.aged.name,
                 },
-                schedule: checkin.schedule.time,
+                schedule:
+                  medication.time_type === 2 ? checkin.schedule.time : null,
                 schedule_id: checkin.schedule_id,
               });
             }
